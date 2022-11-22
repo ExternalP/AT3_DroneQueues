@@ -37,10 +37,10 @@ using System.Windows.Forms;
  *   IncrementTag(): Increments the service tag control.
  *    - NOT data but CONTROL as its for the next input (I think).
  *    - MUST be called in AddNewItem() before adding to queue.
- *   (reg/exp)ListView_MouseClick(): Display Name & Problem in related TextBoxes. (maybe pass ref)
+ *   listView(reg/exp)_MouseClick(): Display Name & Problem in related TextBoxes. (maybe pass ref)
  *   btnRemove(Reg/Exp)_Click(): Dequeue oldest then add it to FinishedList 
  *     & update displays for both queue & finished.
- *   finishedList_DoubleClick(): Delete selected item in ListBox & FinishedList.
+ *   listFinished_DoubleClick(): Delete selected item in ListBox & FinishedList.
  *   ClearFields(): Clears all the TextBoxes after every new item added.
  *  - Full error trapping & feedback messages in status strip (general 
  *      or critical feedback NOT required).
@@ -87,6 +87,28 @@ namespace AT3_DroneQueues
 
         // btn to dequeue express, add it to FinishedList & update displays
         private void btnRemoveExp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Display Name & Problem in related TextBoxes. (maybe pass ref)
+        private void listViewRegular_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        // Display Name & Problem in related TextBoxes. (maybe pass ref)
+        private void listViewExpress_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void listFinished_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbCost_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }

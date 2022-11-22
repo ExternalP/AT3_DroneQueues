@@ -11,8 +11,8 @@
  *  - 2 Classes: FormDrones.cs & Drone.cs (Drone is a simple class).
  *  Drone Class: 5 fields for Client Name, Drone Model, Service Problem, 
  *    Service Cost & Service Tag (Queue priority NOT class field).
- *   - Private Fields: name(string), model(string), serProblem(string), 
- *       cost(double) & serTag(int).
+ *   - Private Fields: clientName(string), model(string), serProblem(string), 
+ *       serCost(double) & serTag(int).
  *   - serTag: control = NumericUpDown, Min= 100, Max=900 & Increment= 10.
  *   - Setters/getters: Setters for name & serProblem format with .ToTitleCase()
  *  FormDrones Class: 
@@ -25,14 +25,14 @@
  *   AddNewItem(): Adds new service item to a Queue<>.
  *   GetServicePriority(): Returns value of Radio for Queue Priority.
  *    - MUST be called in AddNewItem() before adding to queue.
- *   tbCost_KeyPress(): Only accept double value with 1 decimal point.
+ *   tbSerCost_KeyPress(): Only accept double value with 1 decimal point.
  *   IncrementTag(): Increments the service tag control.
  *    - NOT data but CONTROL as its for the next input (I think).
  *    - MUST be called in AddNewItem() before adding to queue.
- *   (reg/exp)ListView_MouseClick(): Display Name & Problem in related TextBoxes. (maybe pass ref)
+ *   listView(reg/exp)_MouseClick(): Display Name & Problem in related TextBoxes. (maybe pass ref)
  *   btnRemove(Reg/Exp)_Click(): Dequeue oldest then add it to FinishedList 
  *     & update displays for both queue & finished.
- *   finishedList_DoubleClick(): Delete selected item in ListBox & FinishedList.
+ *   listFinished_DoubleClick(): Delete selected item in ListBox & FinishedList.
  *   ClearFields(): Clears all the TextBoxes after every new item added.
  *  - Full error trapping & feedback messages in status strip (general 
  *      or critical feedback NOT required).

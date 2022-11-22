@@ -106,6 +106,7 @@
             this.tbCost.TabIndex = 2;
             this.tbCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.tbCost, "Only allows positive numbers to be input");
+            this.tbCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCost_KeyPress);
             // 
             // grpPriority
             // 
@@ -198,6 +199,7 @@
             this.toolTip1.SetToolTip(this.listViewRegular, "Click a record to display its name & \r\nproblem in the textboxes");
             this.listViewRegular.UseCompatibleStateImageBehavior = false;
             this.listViewRegular.View = System.Windows.Forms.View.Details;
+            this.listViewRegular.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewRegular_MouseClick);
             // 
             // colRegName
             // 
@@ -246,6 +248,7 @@
             this.toolTip1.SetToolTip(this.listViewExpress, "Click a record to display its name & \r\nproblem in the textboxes");
             this.listViewExpress.UseCompatibleStateImageBehavior = false;
             this.listViewExpress.View = System.Windows.Forms.View.Details;
+            this.listViewExpress.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewExpress_MouseClick);
             // 
             // colExpName
             // 
@@ -279,6 +282,7 @@
             this.listFinished.Size = new System.Drawing.Size(154, 368);
             this.listFinished.TabIndex = 28;
             this.toolTip1.SetToolTip(this.listFinished, "Double click to delete item from list");
+            this.listFinished.DoubleClick += new System.EventHandler(this.listFinished_DoubleClick);
             // 
             // label7
             // 
