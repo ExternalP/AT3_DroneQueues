@@ -14,14 +14,13 @@ using System.Windows.Forms;
 /* Case Study – Icarus Drone Queues
  * GUI to track drone repair in regular & express queues. Once repaired item 
  *   is dequeue & added to a finished list then deleted from list after the 
- *   client payes & picks up the repaired drone.
- * */
+ *   client payes & picks up the repaired drone. */
 /* Basic Structure:
  *  - 2 Classes: FormDrones.cs & Drone.cs (Drone is a simple class).
  *  Drone Class: 5 fields for Client Name, Drone Model, Service Problem, 
  *    Service Cost & Service Tag (Queue priority NOT class field).
- *   - Private Fields: name(string), model(string), serProblem(string), 
- *       cost(double) & serTag(int).
+ *   - Private Fields: clientName(string), model(string), serProblem(string), 
+ *       serCost(double) & serTag(int).
  *   - serTag: control = NumericUpDown, Min= 100, Max=900 & Increment= 10.
  *   - Setters/getters: Setters for name & serProblem format with .ToTitleCase()
  *  FormDrones Class: 
@@ -34,7 +33,7 @@ using System.Windows.Forms;
  *   AddNewItem(): Adds new service item to a Queue<>.
  *   GetServicePriority(): Returns value of Radio for Queue Priority.
  *    - MUST be called in AddNewItem() before adding to queue.
- *   tbCost_KeyPress(): Only accept double value with 1 decimal point.
+ *   tbSerCost_KeyPress(): Only accept double value with 1 decimal point.
  *   IncrementTag(): Increments the service tag control.
  *    - NOT data but CONTROL as its for the next input (I think).
  *    - MUST be called in AddNewItem() before adding to queue.
@@ -66,6 +65,9 @@ namespace AT3_DroneQueues
 {
     public partial class FormDrone : Form
     {
+        Queue<Drone> RegularServic = new Queue<Drone>();
+        Queue<Drone> ExpressService = new Queue<Drone>();
+        List<Drone> FinishedList = new List<Drone>();
         public FormDrone()
         {
             InitializeComponent();

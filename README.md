@@ -6,8 +6,7 @@
 /* Case Study – Icarus Drone Queues
  * GUI to track drone repair in regular & express queues. Once repaired item 
  *   is dequeue & added to a finished list then deleted from list after the 
- *   client payes & picks up the repaired drone.
- * */
+ *   client payes & picks up the repaired drone. */
 /* Basic Structure:
  *  - 2 Classes: FormDrones.cs & Drone.cs (Drone is a simple class).
  *  Drone Class: 5 fields for Client Name, Drone Model, Service Problem, 
