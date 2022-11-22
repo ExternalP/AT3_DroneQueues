@@ -13,16 +13,17 @@ using System.Windows.Forms;
  * Purpose: AT3 - Drone Queues */
 /* Case Study – Icarus Drone Queues
  * 
- * IMPORTANT: Demonstrate use of in-built functions (ie. Use in-built 
+ * IMPORTANT: Demonstrate use of in-built functions (ie. Use built-in 
  *   whenever possible to minimise my code).
  * */
 /* Basic Structure:
- *  - 2 classes: FormDrones.cs & Drone.cs
- *  - Use 2 Queue<T> (regular & express) of a simple class (Drone.cs).
- *  - List of completed repair work (remove from list when collected).
- *  - Drone.cs 5 fields for Client Name, Drone Model, Service Problem, 
+ *  - 2 classes: FormDrones.cs & Drone.cs (Drone is a simple class).
+ *  - Queue<Drone> RegularService a global queue of Drone (default cost).
+ *  - Queue<Drone> ExpressService a global queue of Drone (cost +15% extra).
+ *  - List<Drone> FinishedList a global List of completed repair work 
+ *      (remove from list when collected).
+ *  - Drone has 5 fields for Client Name, Drone Model, Service Problem, 
  *      Service Cost & Service Tag.
- *  - Express queue cost +15% extra.
  *  - Once drone repaired dequeue it & add to a list of completed work.
  *  - Charge client on collection & remove from completed list.
  *  - Full error trapping & feedback messages in status strip (general 
