@@ -72,5 +72,23 @@ namespace AT3_DroneQueues
         {
             InitializeComponent();
         }
+
+        // btn to add a new valid record to a queue & display it
+        private void btnAddNewItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // btn to dequeue regular, add it to FinishedList & update displays
+        private void btnRemoveReg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // btn to dequeue express, add it to FinishedList & update displays
+        private void btnRemoveExp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

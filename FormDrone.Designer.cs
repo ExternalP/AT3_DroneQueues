@@ -38,21 +38,22 @@
             this.radioExpress = new System.Windows.Forms.RadioButton();
             this.radioRegular = new System.Windows.Forms.RadioButton();
             this.btnAddNewItem = new System.Windows.Forms.Button();
-            this.btnDequeueReg = new System.Windows.Forms.Button();
-            this.btnDequeueExp = new System.Windows.Forms.Button();
+            this.btnRemoveReg = new System.Windows.Forms.Button();
+            this.btnRemoveExp = new System.Windows.Forms.Button();
             this.listViewRegular = new System.Windows.Forms.ListView();
-            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRegName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRegModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRegCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRegTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRegProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewExpress = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExpName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExpModel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExpCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExpTag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colExpProblem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listFinished = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statStripLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,9 +62,11 @@
             this.tbProblem = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.numUpDownTag = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.grpPriority.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownTag)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -99,8 +102,9 @@
             this.tbCost.Location = new System.Drawing.Point(83, 70);
             this.tbCost.MaxLength = 500;
             this.tbCost.Name = "tbCost";
-            this.tbCost.Size = new System.Drawing.Size(121, 20);
+            this.tbCost.Size = new System.Drawing.Size(80, 20);
             this.tbCost.TabIndex = 2;
+            this.tbCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.tbCost, "Only allows positive numbers to be input");
             // 
             // grpPriority
@@ -142,91 +146,98 @@
             // 
             // btnAddNewItem
             // 
-            this.btnAddNewItem.Location = new System.Drawing.Point(138, 96);
+            this.btnAddNewItem.Location = new System.Drawing.Point(101, 124);
             this.btnAddNewItem.Name = "btnAddNewItem";
             this.btnAddNewItem.Size = new System.Drawing.Size(85, 23);
             this.btnAddNewItem.TabIndex = 23;
             this.btnAddNewItem.Text = "Add to Queue";
             this.toolTip1.SetToolTip(this.btnAddNewItem, "Save records to definitions.dat");
             this.btnAddNewItem.UseVisualStyleBackColor = true;
+            this.btnAddNewItem.Click += new System.EventHandler(this.btnAddNewItem_Click);
             // 
-            // btnDequeueReg
+            // btnRemoveReg
             // 
-            this.btnDequeueReg.Location = new System.Drawing.Point(229, 96);
-            this.btnDequeueReg.Name = "btnDequeueReg";
-            this.btnDequeueReg.Size = new System.Drawing.Size(100, 23);
-            this.btnDequeueReg.TabIndex = 24;
-            this.btnDequeueReg.Text = "Dequeue Regular";
-            this.toolTip1.SetToolTip(this.btnDequeueReg, "Save records to definitions.dat");
-            this.btnDequeueReg.UseVisualStyleBackColor = true;
+            this.btnRemoveReg.Location = new System.Drawing.Point(192, 124);
+            this.btnRemoveReg.Name = "btnRemoveReg";
+            this.btnRemoveReg.Size = new System.Drawing.Size(126, 23);
+            this.btnRemoveReg.TabIndex = 24;
+            this.btnRemoveReg.Text = "Remove Regular Item";
+            this.toolTip1.SetToolTip(this.btnRemoveReg, "Save records to definitions.dat");
+            this.btnRemoveReg.UseVisualStyleBackColor = true;
+            this.btnRemoveReg.Click += new System.EventHandler(this.btnRemoveReg_Click);
             // 
-            // btnDequeueExp
+            // btnRemoveExp
             // 
-            this.btnDequeueExp.Location = new System.Drawing.Point(335, 96);
-            this.btnDequeueExp.Name = "btnDequeueExp";
-            this.btnDequeueExp.Size = new System.Drawing.Size(100, 23);
-            this.btnDequeueExp.TabIndex = 25;
-            this.btnDequeueExp.Text = "Dequeue Express";
-            this.toolTip1.SetToolTip(this.btnDequeueExp, "Save records to definitions.dat");
-            this.btnDequeueExp.UseVisualStyleBackColor = true;
+            this.btnRemoveExp.Location = new System.Drawing.Point(324, 124);
+            this.btnRemoveExp.Name = "btnRemoveExp";
+            this.btnRemoveExp.Size = new System.Drawing.Size(119, 23);
+            this.btnRemoveExp.TabIndex = 25;
+            this.btnRemoveExp.Text = "Remove Express Item";
+            this.toolTip1.SetToolTip(this.btnRemoveExp, "Save records to definitions.dat");
+            this.btnRemoveExp.UseVisualStyleBackColor = true;
+            this.btnRemoveExp.Click += new System.EventHandler(this.btnRemoveExp_Click);
             // 
             // listViewRegular
             // 
-            this.listViewRegular.AllowColumnReorder = true;
+            this.listViewRegular.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewRegular.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnName,
-            this.columnModel,
-            this.columnCost,
-            this.columnTag,
-            this.columnProblem});
+            this.colRegName,
+            this.colRegModel,
+            this.colRegCost,
+            this.colRegTag,
+            this.colRegProblem});
+            this.listViewRegular.FullRowSelect = true;
             this.listViewRegular.GridLines = true;
             this.listViewRegular.HideSelection = false;
-            this.listViewRegular.Location = new System.Drawing.Point(15, 125);
+            this.listViewRegular.Location = new System.Drawing.Point(15, 153);
             this.listViewRegular.MultiSelect = false;
             this.listViewRegular.Name = "listViewRegular";
             this.listViewRegular.ShowItemToolTips = true;
-            this.listViewRegular.Size = new System.Drawing.Size(445, 173);
+            this.listViewRegular.Size = new System.Drawing.Size(445, 171);
             this.listViewRegular.TabIndex = 26;
             this.toolTip1.SetToolTip(this.listViewRegular, "Click a record to display its name & \r\nproblem in the textboxes");
             this.listViewRegular.UseCompatibleStateImageBehavior = false;
             this.listViewRegular.View = System.Windows.Forms.View.Details;
             // 
-            // columnName
+            // colRegName
             // 
-            this.columnName.Text = "Name";
+            this.colRegName.Text = "Name";
             // 
-            // columnModel
+            // colRegModel
             // 
-            this.columnModel.Text = "Model";
-            this.columnModel.Width = 45;
+            this.colRegModel.Text = "Model";
+            this.colRegModel.Width = 45;
             // 
-            // columnCost
+            // colRegCost
             // 
-            this.columnCost.Text = "Cost";
-            this.columnCost.Width = 45;
+            this.colRegCost.Text = "Cost";
+            this.colRegCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colRegCost.Width = 45;
             // 
-            // columnTag
+            // colRegTag
             // 
-            this.columnTag.Text = "Tag";
-            this.columnTag.Width = 40;
+            this.colRegTag.Text = "Tag";
+            this.colRegTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colRegTag.Width = 40;
             // 
-            // columnProblem
+            // colRegProblem
             // 
-            this.columnProblem.Text = "Problem";
-            this.columnProblem.Width = 250;
+            this.colRegProblem.Text = "Problem";
+            this.colRegProblem.Width = 250;
             // 
             // listViewExpress
             // 
-            this.listViewExpress.AllowColumnReorder = true;
+            this.listViewExpress.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewExpress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
+            this.colExpName,
+            this.colExpModel,
+            this.colExpCost,
+            this.colExpTag,
+            this.colExpProblem});
+            this.listViewExpress.FullRowSelect = true;
             this.listViewExpress.GridLines = true;
             this.listViewExpress.HideSelection = false;
-            this.listViewExpress.Location = new System.Drawing.Point(15, 323);
+            this.listViewExpress.Location = new System.Drawing.Point(15, 351);
             this.listViewExpress.MultiSelect = false;
             this.listViewExpress.Name = "listViewExpress";
             this.listViewExpress.ShowItemToolTips = true;
@@ -236,44 +247,55 @@
             this.listViewExpress.UseCompatibleStateImageBehavior = false;
             this.listViewExpress.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // colExpName
             // 
-            this.columnHeader1.Text = "Name";
+            this.colExpName.Text = "Name";
             // 
-            // columnHeader2
+            // colExpModel
             // 
-            this.columnHeader2.Text = "Model";
-            this.columnHeader2.Width = 45;
+            this.colExpModel.Text = "Model";
+            this.colExpModel.Width = 45;
             // 
-            // columnHeader3
+            // colExpCost
             // 
-            this.columnHeader3.Text = "Cost";
-            this.columnHeader3.Width = 45;
+            this.colExpCost.Text = "Cost";
+            this.colExpCost.Width = 45;
             // 
-            // columnHeader4
+            // colExpTag
             // 
-            this.columnHeader4.Text = "Tag";
-            this.columnHeader4.Width = 40;
+            this.colExpTag.Text = "Tag";
+            this.colExpTag.Width = 40;
             // 
-            // columnHeader5
+            // colExpProblem
             // 
-            this.columnHeader5.Text = "Problem";
-            this.columnHeader5.Width = 250;
+            this.colExpProblem.Text = "Problem";
+            this.colExpProblem.Width = 250;
             // 
             // listFinished
             // 
             this.listFinished.FormattingEnabled = true;
-            this.listFinished.Location = new System.Drawing.Point(466, 125);
+            this.listFinished.Location = new System.Drawing.Point(466, 153);
             this.listFinished.Name = "listFinished";
             this.listFinished.Size = new System.Drawing.Size(154, 368);
             this.listFinished.TabIndex = 28;
             this.toolTip1.SetToolTip(this.listFinished, "Double click to delete item from list");
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(500, 137);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "Finished List";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label7, "Waiting for pickup");
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statStripLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 527);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 530);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.ShowItemToolTips = true;
             this.statusStrip1.Size = new System.Drawing.Size(632, 22);
@@ -323,13 +345,13 @@
             this.tbProblem.Location = new System.Drawing.Point(228, 25);
             this.tbProblem.Multiline = true;
             this.tbProblem.Name = "tbProblem";
-            this.tbProblem.Size = new System.Drawing.Size(277, 65);
+            this.tbProblem.Size = new System.Drawing.Size(285, 65);
             this.tbProblem.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 109);
+            this.label4.Location = new System.Drawing.Point(16, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 13);
             this.label4.TabIndex = 29;
@@ -339,37 +361,67 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 307);
+            this.label6.Location = new System.Drawing.Point(16, 335);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 30;
             this.label6.Text = "Express Queue";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label7
+            // numUpDownTag
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(500, 109);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
-            this.label7.TabIndex = 31;
-            this.label7.Text = "Finished List";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.toolTip1.SetToolTip(this.label7, "Waiting for pickup");
+            this.numUpDownTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numUpDownTag.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numUpDownTag.Location = new System.Drawing.Point(83, 96);
+            this.numUpDownTag.Maximum = new decimal(new int[] {
+            900,
+            0,
+            0,
+            0});
+            this.numUpDownTag.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numUpDownTag.Name = "numUpDownTag";
+            this.numUpDownTag.Size = new System.Drawing.Size(80, 20);
+            this.numUpDownTag.TabIndex = 5;
+            this.numUpDownTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numUpDownTag.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 13);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Service Tag";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FormDrone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 549);
+            this.ClientSize = new System.Drawing.Size(632, 552);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.numUpDownTag);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listFinished);
             this.Controls.Add(this.listViewExpress);
             this.Controls.Add(this.listViewRegular);
-            this.Controls.Add(this.btnDequeueExp);
-            this.Controls.Add(this.btnDequeueReg);
+            this.Controls.Add(this.btnRemoveExp);
+            this.Controls.Add(this.btnRemoveReg);
             this.Controls.Add(this.btnAddNewItem);
             this.Controls.Add(this.grpPriority);
             this.Controls.Add(this.label5);
@@ -387,6 +439,7 @@
             this.grpPriority.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownTag)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,24 +462,26 @@
         private System.Windows.Forms.RadioButton radioExpress;
         private System.Windows.Forms.RadioButton radioRegular;
         private System.Windows.Forms.Button btnAddNewItem;
-        private System.Windows.Forms.Button btnDequeueReg;
-        private System.Windows.Forms.Button btnDequeueExp;
+        private System.Windows.Forms.Button btnRemoveReg;
+        private System.Windows.Forms.Button btnRemoveExp;
         private System.Windows.Forms.ListView listViewRegular;
-        private System.Windows.Forms.ColumnHeader columnName;
-        private System.Windows.Forms.ColumnHeader columnModel;
-        private System.Windows.Forms.ColumnHeader columnCost;
-        private System.Windows.Forms.ColumnHeader columnTag;
-        private System.Windows.Forms.ColumnHeader columnProblem;
+        private System.Windows.Forms.ColumnHeader colRegName;
+        private System.Windows.Forms.ColumnHeader colRegModel;
+        private System.Windows.Forms.ColumnHeader colRegCost;
+        private System.Windows.Forms.ColumnHeader colRegTag;
+        private System.Windows.Forms.ColumnHeader colRegProblem;
         private System.Windows.Forms.ListView listViewExpress;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader colExpName;
+        private System.Windows.Forms.ColumnHeader colExpModel;
+        private System.Windows.Forms.ColumnHeader colExpCost;
+        private System.Windows.Forms.ColumnHeader colExpTag;
+        private System.Windows.Forms.ColumnHeader colExpProblem;
         private System.Windows.Forms.ListBox listFinished;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numUpDownTag;
+        private System.Windows.Forms.Label label8;
     }
 }
 
