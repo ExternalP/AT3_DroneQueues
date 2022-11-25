@@ -78,6 +78,7 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Client Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label1, "Input name of client");
             // 
             // tbName
             // 
@@ -86,7 +87,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(121, 20);
             this.tbName.TabIndex = 0;
-            this.toolTip1.SetToolTip(this.tbName, "Input client\'s name here");
+            this.toolTip1.SetToolTip(this.tbName, "Input name of client");
             // 
             // tbModel
             // 
@@ -95,7 +96,7 @@
             this.tbModel.Name = "tbModel";
             this.tbModel.Size = new System.Drawing.Size(121, 20);
             this.tbModel.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.tbModel, "Input drone\'s model here");
+            this.toolTip1.SetToolTip(this.tbModel, "Input model of the drone");
             // 
             // tbCost
             // 
@@ -105,7 +106,7 @@
             this.tbCost.Size = new System.Drawing.Size(80, 20);
             this.tbCost.TabIndex = 2;
             this.tbCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.tbCost, "Only allows positive numbers to be input");
+            this.toolTip1.SetToolTip(this.tbCost, "Input cost of service \r\n(If \"Express\" queue is chosen +15% will be added)");
             this.tbCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCost_KeyPress);
             // 
             // grpPriority
@@ -118,7 +119,7 @@
             this.grpPriority.TabIndex = 4;
             this.grpPriority.TabStop = false;
             this.grpPriority.Text = "Queue Priority";
-            this.toolTip1.SetToolTip(this.grpPriority, "Select rating of game");
+            this.toolTip1.SetToolTip(this.grpPriority, "Select which queue to enter");
             // 
             // radioExpress
             // 
@@ -129,7 +130,7 @@
             this.radioExpress.TabIndex = 1;
             this.radioExpress.TabStop = true;
             this.radioExpress.Text = "Express";
-            this.toolTip1.SetToolTip(this.radioExpress, "Select rating PG");
+            this.toolTip1.SetToolTip(this.radioExpress, "Express Queue: Costs +15% extra");
             this.radioExpress.UseVisualStyleBackColor = true;
             // 
             // radioRegular
@@ -142,45 +143,44 @@
             this.radioRegular.TabStop = true;
             this.radioRegular.Tag = "";
             this.radioRegular.Text = "Regular";
-            this.toolTip1.SetToolTip(this.radioRegular, "Select rating G");
+            this.toolTip1.SetToolTip(this.radioRegular, "Regular Queue: Default cost");
             this.radioRegular.UseVisualStyleBackColor = true;
             // 
             // btnAddNewItem
             // 
-            this.btnAddNewItem.Location = new System.Drawing.Point(101, 124);
+            this.btnAddNewItem.Location = new System.Drawing.Point(190, 90);
             this.btnAddNewItem.Name = "btnAddNewItem";
             this.btnAddNewItem.Size = new System.Drawing.Size(85, 23);
             this.btnAddNewItem.TabIndex = 23;
             this.btnAddNewItem.Text = "Add to Queue";
-            this.toolTip1.SetToolTip(this.btnAddNewItem, "Save records to definitions.dat");
+            this.toolTip1.SetToolTip(this.btnAddNewItem, "Add new item to chosen queue");
             this.btnAddNewItem.UseVisualStyleBackColor = true;
             this.btnAddNewItem.Click += new System.EventHandler(this.btnAddNewItem_Click);
             // 
             // btnRemoveReg
             // 
-            this.btnRemoveReg.Location = new System.Drawing.Point(192, 124);
+            this.btnRemoveReg.Location = new System.Drawing.Point(281, 90);
             this.btnRemoveReg.Name = "btnRemoveReg";
             this.btnRemoveReg.Size = new System.Drawing.Size(126, 23);
             this.btnRemoveReg.TabIndex = 24;
             this.btnRemoveReg.Text = "Remove Regular Item";
-            this.toolTip1.SetToolTip(this.btnRemoveReg, "Save records to definitions.dat");
+            this.toolTip1.SetToolTip(this.btnRemoveReg, "Remove/dequeue oldest item from \"Regular Queue\"");
             this.btnRemoveReg.UseVisualStyleBackColor = true;
             this.btnRemoveReg.Click += new System.EventHandler(this.btnRemoveReg_Click);
             // 
             // btnRemoveExp
             // 
-            this.btnRemoveExp.Location = new System.Drawing.Point(324, 124);
+            this.btnRemoveExp.Location = new System.Drawing.Point(413, 90);
             this.btnRemoveExp.Name = "btnRemoveExp";
             this.btnRemoveExp.Size = new System.Drawing.Size(119, 23);
             this.btnRemoveExp.TabIndex = 25;
             this.btnRemoveExp.Text = "Remove Express Item";
-            this.toolTip1.SetToolTip(this.btnRemoveExp, "Save records to definitions.dat");
+            this.toolTip1.SetToolTip(this.btnRemoveExp, "Remove/dequeue oldest item from \"Express Queue\"");
             this.btnRemoveExp.UseVisualStyleBackColor = true;
             this.btnRemoveExp.Click += new System.EventHandler(this.btnRemoveExp_Click);
             // 
             // listViewRegular
             // 
-            this.listViewRegular.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewRegular.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colRegName,
             this.colRegModel,
@@ -190,10 +190,9 @@
             this.listViewRegular.FullRowSelect = true;
             this.listViewRegular.GridLines = true;
             this.listViewRegular.HideSelection = false;
-            this.listViewRegular.Location = new System.Drawing.Point(15, 153);
+            this.listViewRegular.Location = new System.Drawing.Point(15, 141);
             this.listViewRegular.MultiSelect = false;
             this.listViewRegular.Name = "listViewRegular";
-            this.listViewRegular.ShowItemToolTips = true;
             this.listViewRegular.Size = new System.Drawing.Size(445, 171);
             this.listViewRegular.TabIndex = 26;
             this.toolTip1.SetToolTip(this.listViewRegular, "Click a record to display its name & \r\nproblem in the textboxes");
@@ -229,7 +228,6 @@
             // 
             // listViewExpress
             // 
-            this.listViewExpress.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewExpress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colExpName,
             this.colExpModel,
@@ -239,10 +237,9 @@
             this.listViewExpress.FullRowSelect = true;
             this.listViewExpress.GridLines = true;
             this.listViewExpress.HideSelection = false;
-            this.listViewExpress.Location = new System.Drawing.Point(15, 351);
+            this.listViewExpress.Location = new System.Drawing.Point(15, 339);
             this.listViewExpress.MultiSelect = false;
             this.listViewExpress.Name = "listViewExpress";
-            this.listViewExpress.ShowItemToolTips = true;
             this.listViewExpress.Size = new System.Drawing.Size(445, 170);
             this.listViewExpress.TabIndex = 27;
             this.toolTip1.SetToolTip(this.listViewExpress, "Click a record to display its name & \r\nproblem in the textboxes");
@@ -277,29 +274,30 @@
             // listFinished
             // 
             this.listFinished.FormattingEnabled = true;
-            this.listFinished.Location = new System.Drawing.Point(466, 153);
+            this.listFinished.Location = new System.Drawing.Point(466, 141);
             this.listFinished.Name = "listFinished";
             this.listFinished.Size = new System.Drawing.Size(154, 368);
             this.listFinished.TabIndex = 28;
-            this.toolTip1.SetToolTip(this.listFinished, "Double click to delete item from list");
+            this.toolTip1.SetToolTip(this.listFinished, "Double click an item to delete it from the list");
             this.listFinished.DoubleClick += new System.EventHandler(this.listFinished_DoubleClick);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(500, 137);
+            this.label7.Location = new System.Drawing.Point(466, 113);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.Size = new System.Drawing.Size(138, 26);
             this.label7.TabIndex = 31;
-            this.label7.Text = "Finished List";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.toolTip1.SetToolTip(this.label7, "Waiting for pickup");
+            this.label7.Text = "Finished List: \r\n(Double click to delete item)";
+            this.toolTip1.SetToolTip(this.label7, "Finished List: Repaired items waiting for pickup. \r\nDouble click an item to delet" +
+        "e it from the list");
+            this.label7.UseMnemonic = false;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statStripLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 530);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 517);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.ShowItemToolTips = true;
             this.statusStrip1.Size = new System.Drawing.Size(632, 22);
@@ -323,6 +321,7 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Drone Model";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label2, "Input model of the drone");
             // 
             // label3
             // 
@@ -333,44 +332,51 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Service Cost";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label3, "Input cost of service \r\n(If \"Express\" queue is chosen +15% will be added)");
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(234, 9);
+            this.label5.Location = new System.Drawing.Point(234, 5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 13);
+            this.label5.Size = new System.Drawing.Size(96, 13);
             this.label5.TabIndex = 22;
-            this.label5.Text = "Service Problem";
+            this.label5.Text = "Problem to Service";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label5, "What needs to be repaired");
             // 
             // tbProblem
             // 
-            this.tbProblem.Location = new System.Drawing.Point(228, 25);
+            this.tbProblem.Location = new System.Drawing.Point(228, 20);
             this.tbProblem.Multiline = true;
             this.tbProblem.Name = "tbProblem";
             this.tbProblem.Size = new System.Drawing.Size(285, 65);
             this.tbProblem.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.tbProblem, "Input the problem with the drone");
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 137);
+            this.label4.Location = new System.Drawing.Point(16, 125);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.Size = new System.Drawing.Size(371, 13);
             this.label4.TabIndex = 29;
-            this.label4.Text = "Regular Queue";
+            this.label4.Text = "Regular Queue: (Click a record to display its name & problem in the textboxes)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label4, "Regular Queue: Default cost");
+            this.label4.UseMnemonic = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 335);
+            this.label6.Location = new System.Drawing.Point(16, 323);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 13);
+            this.label6.Size = new System.Drawing.Size(371, 13);
             this.label6.TabIndex = 30;
-            this.label6.Text = "Express Queue";
+            this.label6.Text = "Express Queue: (Click a record to display its name & problem in the textboxes)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label6, "Express Queue: Costs +15% extra");
+            this.label6.UseMnemonic = false;
             // 
             // numUpDownTag
             // 
@@ -415,7 +421,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 552);
+            this.ClientSize = new System.Drawing.Size(632, 539);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.numUpDownTag);
             this.Controls.Add(this.label7);

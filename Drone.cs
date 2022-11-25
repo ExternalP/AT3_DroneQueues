@@ -30,10 +30,10 @@ namespace AT3_DroneQueues
         private string serProblem;
         private double serCost;
         private int serTag;
-        // Variable for to title case in setters for name & problem
+        // Variable for title case format used in setters for name & problem
         private readonly static TextInfo txtInfo = new CultureInfo("en-AU", false).TextInfo;
 
-        // Getters & setters for all variables
+        // Getters & setters for all variables (name & problem formatted on set)
         public string gsClientName
         {
             get { return clientName; }
