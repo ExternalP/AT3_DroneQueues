@@ -211,6 +211,8 @@ namespace AT3_DroneQueues
             string missingField = "";
 
             resetColors();
+            listViewRegular.SelectedIndices.Clear();
+            listViewExpress.SelectedIndices.Clear();
             if (String.IsNullOrEmpty(tbName.Text))
             {
                 validData = false;
@@ -327,8 +329,7 @@ namespace AT3_DroneQueues
             return priority;
         }
 
-        // Increments the tag control (& data but im not sure)
-        // ONLY CALL AFTER all other fields are confirmed valid
+        // Increments the tag control return data
         private int IncrementTag()
         {
             //MUST be called in AddNewItem() before adding to queue
@@ -336,8 +337,7 @@ namespace AT3_DroneQueues
             int inTag = -1;
             try // Try to take input tag as an int
             {
-                inTag = Convert.ToInt32(numUpDownTag.Value);
-                if (inTag == 900)
+                if (numUpDownTag.Value > 890)
                 {
                     MessageBox.Show("ERROR CANNOT Add Item: Already at max value" 
                         + " for Service Tag\nReason: Maximum tag value is 900, "
@@ -345,6 +345,7 @@ namespace AT3_DroneQueues
                     inTag = -2;
                 }
                 numUpDownTag.UpButton();
+                inTag = Convert.ToInt32(numUpDownTag.Value);
             }
             catch // If tag can't be convert to int set inTag to -1
             {
@@ -398,6 +399,8 @@ namespace AT3_DroneQueues
             {
                 r.Checked = false;
             }
+            listViewRegular.SelectedIndices.Clear();
+            listViewExpress.SelectedIndices.Clear();
             resetColors();
         }
 
