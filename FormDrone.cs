@@ -100,6 +100,9 @@ namespace AT3_DroneQueues
                 FinishedList.Add(RegularService.Dequeue());
                 DisplayQueues(1);
                 DisplayFinished();
+                StatusMsg(FinishedList.Last().gsClientName + "'s drone has"
+                + " been serviced so has been dequeue from Regular Queue"
+                + " & added to Finished List.", true);
             }
             resetColors();
         }
@@ -112,6 +115,9 @@ namespace AT3_DroneQueues
                 FinishedList.Add(ExpressService.Dequeue());
                 DisplayQueues(2);
                 DisplayFinished();
+                StatusMsg(FinishedList.Last().gsClientName + "'s drone has"
+                + " been serviced so has been dequeue from Express Queue"
+                + " & added to Finished List.", true);
             }
             resetColors();
         }
@@ -192,7 +198,7 @@ namespace AT3_DroneQueues
             }
         }
 
-        // Adds new service item to a Queue<>
+        // Adds new service item to a Queue
         private int AddNewItem()
         {
             //MUST call GetServicePriority() & IncrementTag() before adding to queue
@@ -231,13 +237,13 @@ namespace AT3_DroneQueues
             } 
             else
             {
-                // Try to take input price as double
+                // Try to take the input cost as double
                 try
                 {
                     newPrice = Convert.ToDouble(tbCost.Text);
                 }
                 catch
-                // If price can't be convert to double set validData to false
+                // If cost can't be convert to double set validData to false
                 {
                     validData = false;
                     missingField += "Cost, ";
@@ -283,11 +289,13 @@ namespace AT3_DroneQueues
                 }
                 else
                 {
+                    // 15% cost increase due to Express queue
+                    newDrone.gsSerCost += newPrice*0.15;
                     ExpressService.Enqueue(newDrone);
                     wasAddedQ = 2;
                 }
-                statMsg += "Item for the client \"" + tbName.Text
-                    + "\" was added to the " + priority + " Queue.)";
+                statMsg += "" + tbName.Text + "'s drone was added to the "
+                    + priority + " Queue.)";
             }
             // Display message in status strip & true to word wrap
             StatusMsg(statMsg, true);
@@ -368,6 +376,13 @@ namespace AT3_DroneQueues
                     new Font(myListView.Font, FontStyle.Bold);
                 tbName.Text = myQueue.ElementAt(selectedIndex).gsClientName;
                 tbProblem.Text = myQueue.ElementAt(selectedIndex).gsSerProblem;
+                StatusMsg("The clicked item's name & problem have been output"
+                    + " to their fields", true);
+            }
+            else
+            {
+                StatusMsg("Table has been click but no item selected.\nClick "
+                    + "the line the item is on to display its details.", true);
             }
             resetColors();
         }
