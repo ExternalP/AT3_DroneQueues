@@ -78,6 +78,8 @@ namespace AT3_DroneQueues
         {
             InitializeComponent();
         }
+        // Set in StatusMsg() so window is shorter than current screen height
+        private int maxWindowHeight;
 
         // btn to add a new valid item to a queue & display it
         private void btnAddNewItem_Click(object sender, EventArgs e)
@@ -90,18 +92,28 @@ namespace AT3_DroneQueues
             }
         }
 
-        //______________________NOT STARTED_________________________
         // btn to dequeue regular, add it to FinishedList & update displays
         private void btnRemoveReg_Click(object sender, EventArgs e)
         {
-
+            if (RegularService.Count > 0)
+            {
+                FinishedList.Add(RegularService.Dequeue());
+                DisplayQueues(1);
+                DisplayFinished();
+            }
+            resetColors();
         }
 
-        //______________________NOT STARTED_________________________
         // btn to dequeue express, add it to FinishedList & update displays
         private void btnRemoveExp_Click(object sender, EventArgs e)
         {
-
+            if (ExpressService.Count > 0)
+            {
+                FinishedList.Add(ExpressService.Dequeue());
+                DisplayQueues(2);
+                DisplayFinished();
+            }
+            resetColors();
         }
 
         // Output selected Regular item's Name & Problem to their TextBoxes
@@ -116,11 +128,15 @@ namespace AT3_DroneQueues
             SelectItems(ref ExpressService, ref listViewExpress);
         }
 
-        //______________________NOT STARTED_________________________
         // Delete selected item in ListBox & from FinishedList
         private void listFinished_DoubleClick(object sender, EventArgs e)
         {
-
+            if (listFinished.SelectedIndex != -1)
+            {
+                DeleteFinishedItem(listFinished.SelectedIndex);
+                DisplayFinished();
+                resetColors();
+            }
         }
 
         // Only accept double value with 1 decimal point. (probally 1 dec place)
@@ -164,11 +180,16 @@ namespace AT3_DroneQueues
             }
         }
 
-        //______________________NOT STARTED_________________________
         // Displays FinishedList in ListBox (name & cost only)
         private void DisplayFinished()
         {
-
+            // Clear the list
+            listFinished.Items.Clear();
+            // Loop through all items in list, displaying name & cost
+            foreach (Drone d in FinishedList)
+            {
+                listFinished.Items.Add(d.gsClientName + ":  $" + d.gsSerCost);
+            }
         }
 
         // Adds new service item to a Queue<>
@@ -273,6 +294,16 @@ namespace AT3_DroneQueues
             return wasAddedQ;
         }
 
+        // Delete selected item in ListBox & from FinishedList
+        private void DeleteFinishedItem(int delIndex)
+        {
+            string delName = FinishedList[delIndex].gsClientName;
+            FinishedList.RemoveAt(delIndex);
+            listFinished.SelectedIndex = -1;
+            StatusMsg("The client \"" + delName + "\" has collected their drone" 
+                + " and it has been removed from the list.", true);
+        }
+
         // Returns value of Radio for Queue Priority
         private string GetServicePriority()
         {
@@ -338,6 +369,7 @@ namespace AT3_DroneQueues
                 tbName.Text = myQueue.ElementAt(selectedIndex).gsClientName;
                 tbProblem.Text = myQueue.ElementAt(selectedIndex).gsSerProblem;
             }
+            resetColors();
         }
 
         // Clears all the TextBoxes & radioBtns after every new item added
@@ -365,7 +397,6 @@ namespace AT3_DroneQueues
             grpPriority.BackColor = SystemColors.Control;
         }
 
-        //######################BASIC_COMPLETE############################
         // Displays the status message after formating msg & strip
         private void StatusMsg(string statMsg, bool wrapTxt)
         {
@@ -402,6 +433,15 @@ namespace AT3_DroneQueues
                 statMsg = msgParts.Trim('\n');
             }
             statStripLabel.Text = statMsg;
+
+            // maxWindowHeight set to 90% of current screen height
+            maxWindowHeight = Screen.FromControl(this).Bounds.Height / 10 * 9;
+            int newStripHeight = statusStrip1.Height - originalHeight;
+            // Increase height of window so status strip isn't covering stuff
+            if (this.Height + newStripHeight < maxWindowHeight)
+                this.Height += statusStrip1.Height - originalHeight;
+            else
+                this.Height = maxWindowHeight;
         }
     }
 }
