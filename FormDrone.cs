@@ -342,7 +342,7 @@ namespace AT3_DroneQueues
                     MessageBox.Show("ERROR CANNOT Add Item: Already at max value" 
                         + " for Service Tag\nReason: Maximum tag value is 900, "
                         + "lower service tag to add a new item");
-                    inTag = -2;
+                    return -2;
                 }
                 numUpDownTag.UpButton();
                 inTag = Convert.ToInt32(numUpDownTag.Value);
