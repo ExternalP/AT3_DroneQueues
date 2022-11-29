@@ -377,7 +377,7 @@ namespace AT3_DroneQueues
                     new Font(myListView.Font, FontStyle.Bold);
                 tbName.Text = myQueue.ElementAt(selectedIndex).gsClientName;
                 tbProblem.Text = myQueue.ElementAt(selectedIndex).gsSerProblem;
-                StatusMsg("The clicked item's name & problem have been output"
+                StatusMsg("The clicked item's name and problem have been output"
                     + " to their fields", true);
             }
             else
